@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
@@ -25,10 +24,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.foodwise.ui.theme.FoodWiseTheme
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
+import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.*
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -50,9 +49,9 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun MyApp() {
         val navItems = listOf(
-            NavItem("Camera", Icons.Filled.Home),
-            NavItem("Inventory", Icons.Filled.Favorite),
-            NavItem("Insight", Icons.Filled.Person)
+            NavItem("Camera", Icons.Default.PhotoCamera),
+            NavItem("Inventory", Icons.Filled.List),
+            NavItem("Insight", Icons.Default.Lightbulb)
         )
 
         var selectedIndex by remember { mutableStateOf(0) }
