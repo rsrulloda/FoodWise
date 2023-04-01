@@ -1,6 +1,7 @@
 package com.example.foodwise
 
 import android.annotation.SuppressLint
+import android.os.Build
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -10,8 +11,8 @@ import androidx.navigation.compose.rememberNavController
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.material.*
 import androidx.compose.material.Icon
@@ -24,10 +25,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.foodwise.ui.screens.CameraScreen
+import com.example.foodwise.ui.screens.InsightScreen
 import com.example.foodwise.ui.screens.InventoryScreen
 import com.example.foodwise.ui.theme.FoodWiseTheme
 
 class MainActivity : ComponentActivity() {
+
+    // Main Function that sets bottom navigation bar
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +68,8 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    // Navigation controller which screen is displayed
+    @RequiresApi(Build.VERSION_CODES.O)
     @Composable
     fun Navigation(navController: NavHostController) {
         NavHost(navController = navController, startDestination = "inventory") {
@@ -78,6 +85,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    // Bottom navigation bar UI
     @Composable
     fun BottomNavigationBar(
         items: List<BottomNavItem>,
@@ -119,27 +127,25 @@ class MainActivity : ComponentActivity() {
     }
 
 
+    // Function that calls CameraScreen
     @Composable
     fun CameraScreenShow() {
         val instance = CameraScreen()
         instance.Display()
     }
 
+    // Function that calls InventoryScreen
+    @RequiresApi(Build.VERSION_CODES.O)
     @Composable
     fun InventoryScreenShow() {
         val instance = InventoryScreen()
         instance.Display()
     }
 
+    // Function that calls InsightScreen
     @Composable
     fun InsightScreenShow() {
-        // Content of screen below
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(text = "Insight screen")
-        }
-        // Content of screen above
+        val instance = InsightScreen()
+        instance.Display()
     }
 }
