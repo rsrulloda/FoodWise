@@ -1,4 +1,4 @@
-package com.example.foodwise
+package com.example.foodwise.components
 
 data class Item(val description: String, val price: Double) {
 
