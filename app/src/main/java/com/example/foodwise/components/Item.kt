@@ -1,7 +1,12 @@
 package com.example.foodwise.components
 
-data class Item(val description: String, val price: Double) {
+import java.util.Date
 
+data class Item(
+    val description: String,
+    val price: Double,
+    val date: Date
+    ) {
     val getDes: String
         get() = description
 
@@ -9,6 +14,6 @@ data class Item(val description: String, val price: Double) {
         get() = price
 
     override fun toString(): String {
-        return "$description\t\t\t$$price"
+        return "$description\t\t\t$$price\t\t\t$date"
     }
 }

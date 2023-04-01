@@ -10,7 +10,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.material.*
@@ -23,7 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.foodwise.components.Item
+import com.example.foodwise.ui.screens.InventoryScreen
 import com.example.foodwise.ui.theme.FoodWiseTheme
 
 class MainActivity : ComponentActivity() {
@@ -65,13 +64,13 @@ class MainActivity : ComponentActivity() {
     fun Navigation(navController: NavHostController) {
         NavHost(navController = navController, startDestination = "inventory") {
             composable("camera") {
-                CameraScreen()
+                CameraScreenShow()
             }
             composable("inventory") {
-                InventoryScreen()
+                InventoryScreenShow()
             }
             composable("insight") {
-                InsightScreen()
+                InsightScreenShow()
             }
         }
     }
@@ -118,7 +117,7 @@ class MainActivity : ComponentActivity() {
 
 
     @Composable
-    fun CameraScreen() {
+    fun CameraScreenShow() {
         // Content of screen below
         Box(
             modifier = Modifier.fillMaxSize(),
@@ -130,25 +129,13 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun InventoryScreen() {
-        // Content of screen below
-        val item1 = Item("Test Item 1", 10.50)
-        val item2 = Item("Test Item 2", 13.50)
-        val item3 = Item("Test Item 3", 9.75)
-
-        val items = mutableListOf(item1, item2, item3)
-
-        LazyColumn {
-            items(items.size) { index ->
-                Text(items[index].toString(), fontSize = 20.sp)
-                Divider(color = MaterialTheme.colors.secondary, thickness = 2.dp)
-            }
-        }
-        // Content of screen above
+    fun InventoryScreenShow() {
+        val instance = InventoryScreen()
+        instance.Display()
     }
 
     @Composable
-    fun InsightScreen() {
+    fun InsightScreenShow() {
         // Content of screen below
         Box(
             modifier = Modifier.fillMaxSize(),
