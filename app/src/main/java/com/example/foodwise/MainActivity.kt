@@ -1,5 +1,6 @@
 package com.example.foodwise
 
+import android.annotation.SuppressLint
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -22,10 +23,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.foodwise.ui.screens.CameraScreen
 import com.example.foodwise.ui.screens.InventoryScreen
 import com.example.foodwise.ui.theme.FoodWiseTheme
 
 class MainActivity : ComponentActivity() {
+    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -118,14 +121,8 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun CameraScreenShow() {
-        // Content of screen below
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(text = "Camera screen")
-        }
-        // Content of screen above
+        val instance = CameraScreen()
+        instance.Display()
     }
 
     @Composable
