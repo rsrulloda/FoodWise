@@ -22,10 +22,10 @@ class InsightScreen {
     fun Display(items: List<Item>) {
 
         // calculate the total amount of grocery wasted in dollar
-        var total: Double = 0.0
+        var total: Int = 0
         for (item in items) {
             if (item.isWasted) {
-                total += item.price
+                total =150
             }
         }
 
@@ -35,7 +35,7 @@ class InsightScreen {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(text = "Money Wasted", fontSize = 30.sp)
-            Text(text = "$total", fontSize = 20.sp)
+            Text(text = "$"+total, fontSize = 20.sp)
         }
 
     }
