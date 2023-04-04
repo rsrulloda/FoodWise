@@ -23,10 +23,10 @@ class InsightScreen {
         // calculate the total amount of grocery wasted in dollar
         var wastedAmount: Double = 0.0
         var total: Double = 0.0
-
         for (item in items) {
             total += item.price
             if (item.isWasted) {
+
                 wastedAmount += item.price
             }
         }
@@ -44,6 +44,7 @@ class InsightScreen {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(text = "Money Wasted", fontSize = 30.sp)
+
             Text(text = "$$myFormattedStringWasted", fontSize = 20.sp)
             LinearProgressIndicator(progress = percentageFloat, color = Color.DarkGray)
             Text(text = "Total Spent: $$myFormattedStringTotal", fontSize = 20.sp)
