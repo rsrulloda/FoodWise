@@ -1,6 +1,15 @@
 package com.example.foodwise.ui.screens
 
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.os.Bundle
+import android.util.Log
+import android.view.Display
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -9,18 +18,33 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.navigation.NavController
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.TextRecognizer
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 
-class CameraScreen {
+//class CameraScreen : ComponentActivity(){
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContent {
+////            Text(text = "Camera")
+//            Display(LocalContext.current, this)
+//        }
+//
+////        requestCameraPermission()
+//    }
+class CameraScreen{
     @Composable
+//    fun Display(context: Context, activity: ComponentActivity) {
     fun Display() {
         Column(
             modifier = Modifier
@@ -43,12 +67,15 @@ class CameraScreen {
                 textAlign = TextAlign.Center
             )
         }
+//        requestCameraPermission(context, activity)
     }
 
-    // Below is the camera code
+    // *** Below is the camera code ***
 
 
-    // Below is the text recognition code
+
+
+    // *** Below is the text recognition code ***
 
     // Get the text recognition client
     private fun getTextRecognizer(): TextRecognizer {
@@ -99,10 +126,10 @@ class CameraScreen {
     }
 
 
-//    @Preview(showBackground = true)
-//    @Composable
-//    fun CameraScreenPreview() {
-//        Display()
-//    }
+    @Preview(showBackground = true)
+    @Composable
+    fun CameraScreenPreview() {
+        Display()
+    }
 }
 

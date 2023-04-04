@@ -1,6 +1,9 @@
 package com.example.foodwise
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Build
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -9,8 +12,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.Modifier
@@ -21,9 +26,12 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.foodwise.components.fooditems
 import com.example.foodwise.ui.screens.CameraScreen
 import com.example.foodwise.ui.screens.InsightScreen
@@ -31,6 +39,17 @@ import com.example.foodwise.ui.screens.InventoryScreen
 import com.example.foodwise.ui.theme.FoodWiseTheme
 
 class MainActivity : ComponentActivity() {
+    // Request the camera permission
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            Log.i("ActivityResultContracts.RequestPermission()", "Permission granted")
+        } else {
+            Log.i("ActivityResultContracts.RequestPermission()", "Permission denied")
+        }
+    }
 
     // Main Function that sets bottom navigation bar
     @RequiresApi(Build.VERSION_CODES.O)
@@ -66,6 +85,26 @@ class MainActivity : ComponentActivity() {
                     }
                 ) { Navigation(navController = navController) }
             }
+        }
+        requestCameraPermission()
+    }
+
+    // Request camera permission
+    private fun requestCameraPermission() {
+        when {
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                Log.i("ContextCompat.checkSelfPermission", "Permission previously granted")
+            }
+
+            ActivityCompat.shouldShowRequestPermissionRationale(
+                this,
+                Manifest.permission.CAMERA
+            ) -> Log.i("ActivityCompat.shouldShowRequestPermissionRationale", "Show camera permissions dialog")
+
+            else -> requestPermissionLauncher.launch(Manifest.permission.CAMERA)
         }
     }
 
