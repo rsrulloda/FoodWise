@@ -24,6 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.foodwise.components.fooditems
 import com.example.foodwise.ui.screens.CameraScreen
 import com.example.foodwise.ui.screens.InsightScreen
 import com.example.foodwise.ui.screens.InventoryScreen
@@ -139,7 +140,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun InventoryScreenShow() {
         val instance = InventoryScreen()
-        instance.Display()
+        instance.Display( fooditems)
     }
 
     // Function that calls InsightScreen
