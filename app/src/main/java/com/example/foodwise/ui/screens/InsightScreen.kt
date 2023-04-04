@@ -19,7 +19,7 @@ import java.time.LocalDate
 class InsightScreen {
 
     @Composable
-    fun Display(items: List<Item>) {
+    fun Display(itemss: List<Item>) {
 
         // calculate the total amount of grocery wasted in dollar
         var total: Double = 0.0

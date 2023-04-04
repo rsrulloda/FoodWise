@@ -148,6 +148,6 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun InsightScreenShow() {
         val instance = InsightScreen()
-        instance.Display(items)
+        instance.Display(item)
     }
 }
