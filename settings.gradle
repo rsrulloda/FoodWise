@@ -10,6 +10,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        // Include Google's Maven repository for ML Kit dependencies
+        maven { url 'https://jitpack.io' }
     }
 }
 rootProject.name = "FoodWise"
